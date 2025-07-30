@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IProductDal
+    public interface IProductDal : IGenericDal<Product>
     {
-        void Insert(Product product);
-        void Delete(Product product);
-        void Update(Product product);
-        List<Product> GetList();
     }
 }
