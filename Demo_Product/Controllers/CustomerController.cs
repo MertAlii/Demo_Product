@@ -2,12 +2,15 @@
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Demo_Product.Controllers
 {
     public class CustomerController : Controller
     {
+
         CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+        JobManager jobManager = new JobManager(new EfJobDal());
         public IActionResult Index()
         {
             var values = customerManager.GetCustomersListWithJob();
@@ -17,6 +20,14 @@ namespace Demo_Product.Controllers
         [HttpGet]
         public IActionResult AddCustomer()
         {
+            var jobList = jobManager.TGetList()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.JobName,
+                    Value = x.JobId.ToString()
+                }).ToList();
+
+            ViewBag.v = jobList;
             return View();
         }
         [HttpPost]
