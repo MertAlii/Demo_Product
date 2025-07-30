@@ -47,6 +47,14 @@ namespace Demo_Product.Controllers
         [HttpGet]
         public IActionResult UpdateCustomer(int id)
         {
+            var jobList = jobManager.TGetList()
+                .Select(x => new SelectListItem
+                {
+                    Text = x.JobName,
+                    Value = x.JobId.ToString()
+                }).ToList();
+
+            ViewBag.v = jobList;
             var values = customerManager.TGetById(id);
             return View(values);
         }

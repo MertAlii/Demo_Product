@@ -1,0 +1,9 @@
+﻿Arama Listesi
+Üyelik Sistemi (Identity)
+Yardım Pop-up
+Ayarlar
+Çıkış Yap
+Giriş Yap
+Kayıt Ol
+Admin Tablosu ---> Aspnet User
+Proje canlıya Taşınma
