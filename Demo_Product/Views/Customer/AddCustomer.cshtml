@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.Customer
+@{
+    ViewData["Title"] = "Müşteri Ekle";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+<h2>Yeni Müşteri Ekle</h2>
+
+<form method="post">
+    <div class="mb-3">
+        @Html.LabelFor(x => x.CustomerName, "Ad", new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerName, "", new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.CustomerSurname, "Soyad", new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.CustomerSurname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerSurname, "", new { @class = "text-danger" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(x => x.CustomerCity, "Şehir", new { @class = "form-label" })
+        @Html.TextBoxFor(x => x.CustomerCity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerCity, "", new { @class = "text-danger" })
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

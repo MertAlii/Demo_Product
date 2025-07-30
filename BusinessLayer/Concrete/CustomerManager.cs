@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    internal class CustomerManager : ICustomerService
+    public class CustomerManager : ICustomerService
     {
-        ICustomerDal _customerDal;
+        DataAccessLayer.Abstract.ICustomerDal _customerDal;
 
-        public CustomerManager(ICustomerDal customerDal)
+        public CustomerManager(DataAccessLayer.Abstract.ICustomerDal customerDal)
         {
             _customerDal = customerDal;
         }

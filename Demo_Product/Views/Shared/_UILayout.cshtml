@@ -13,10 +13,16 @@
         </div>
         <ul class="nav flex-column px-2">
             <li class="nav-item">
-                <a class="nav-link text-white" href="#"><i class="bi bi-box-seam me-2"></i> <span>Ürünler</span></a>
+                <a class="nav-link text-white" href="/Product/Index/"><i class="bi bi-box-seam me-2"></i> <span>Ürünler</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#"><i class="bi bi-people me-2"></i> <span>Müşteriler</span></a>
+                <a class="nav-link text-white" href="/Product/AddProduct"><i class="bi bi-plus-circle me-2"></i> <span>Yeni Ürün Girişi</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Customer/Index"><i class="bi bi-people me-2"></i> <span>Müşteriler</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/Customer/AddCustomer"><i class="bi bi-plus-circle me-2"></i> <span>Yeni Müşteri Girişi</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="#"><i class="bi bi-tags me-2"></i> <span>Kategoriler</span></a>
@@ -36,6 +42,7 @@
             <i class="bi bi-list"></i>
         </button>
         @RenderBody()
+        @RenderSection("Scripts", required: false)
     </div>
 </div>
 
