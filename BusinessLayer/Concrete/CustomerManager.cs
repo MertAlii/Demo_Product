@@ -1,21 +1,22 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
     public class CustomerManager : ICustomerService
     {
-        DataAccessLayer.Abstract.ICustomerDal _customerDal;
+        ICustomerDal _customerDal;
 
-        public CustomerManager(DataAccessLayer.Abstract.ICustomerDal customerDal)
+        public CustomerManager(ICustomerDal customerDal)
         {
             _customerDal = customerDal;
+        }
+
+        public List<Customer> GetCustomersListWithJob()
+        {
+            return _customerDal.GetCustomerListWithJob();
         }
 
         public void TDelete(Customer t)
@@ -25,7 +26,7 @@ namespace BusinessLayer.Concrete
 
         public Customer TGetById(int id)
         {
-           return _customerDal.GetById(id);
+            return _customerDal.GetById(id);
         }
 
         public List<Customer> TGetList()
