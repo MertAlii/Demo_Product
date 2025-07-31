@@ -1,7 +1,116 @@
-﻿
+﻿@model Demo_Product.Models.UserEditViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Profil Bilgileri";
     Layout = "~/Views/Shared/_UILayout.cshtml";
 }
 
-<h1>Ayarlar</h1>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card border-0 shadow-lg rounded-4 bg-white">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <i class="bi bi-person-circle" style="font-size: 3.5rem; color: #212529;"></i>
+                    <h2 class="mt-2 mb-0 fw-bold text-dark">Profil Bilgileri</h2>
+                    <p class="text-muted mb-0">Bilgilerinizi güncelleyin</p>
+                </div>
+                <form method="post" autocomplete="off">
+                    <div class="mb-4">
+                        <label for="Name" class="form-label text-dark">Adınız</label>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <input type="text" class="form-control form-control-lg rounded-3" id="Name" name="Name" placeholder="Adınızı giriniz" value="@Model?.Name" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="Surname" class="form-label text-dark">Soyadınız</label>
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                        <input type="text" class="form-control form-control-lg rounded-3" id="Surname" name="Surname" placeholder="Soyadınızı giriniz" value="@Model?.Surname" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="Mail" class="form-label text-dark">Mail Adresiniz</label>
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                        <input type="email" class="form-control form-control-lg rounded-3" id="Mail" name="Mail" placeholder="E-posta adresinizi giriniz" value="@Model?.Mail" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="Gender" class="form-label text-dark">Cinsiyet</label>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                        <select class="form-control form-control-lg rounded-3" id="Gender" name="Gender">
+                            <option value="">Seçiniz</option>
+                            <option value="Erkek" selected="@(Model?.Gender == "Erkek")">Erkek</option>
+                            <option value="Kadın" selected="@(Model?.Gender == "Kadın")">Kadın</option>
+                            <option value="Diğer" selected="@(Model?.Gender == "Diğer")">Diğer</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="Password" class="form-label text-dark">Şifre</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="position-relative">
+                            <input type="password" class="form-control form-control-lg rounded-3 pr-5" id="Password" name="Password" placeholder="Şifrenizi giriniz" />
+                            <span class="password-toggle" onclick="togglePassword('Password', this)">
+                                <i class="bi bi-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="ConfirmPassword" class="form-label text-dark">Şifre Tekrarı</label>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        <div class="position-relative">
+                            <input type="password" class="form-control form-control-lg rounded-3 pr-5" id="ConfirmPassword" name="ConfirmPassword" placeholder="Şifrenizi tekrar giriniz" />
+                            <span class="password-toggle" onclick="togglePassword('ConfirmPassword', this)">
+                                <i class="bi bi-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <button type="submit" class="btn btn-dark btn-lg w-100 rounded-3 mb-3">
+                        <i class="bi bi-save"></i> Değişiklikleri Kaydet
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .password-toggle {
+        position: absolute;
+        top: 50%;
+        right: 1.25rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #888;
+        z-index: 2;
+        font-size: 1.3rem;
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .form-control.pr-5 {
+        padding-right: 2.5rem !important;
+    }
+
+    .password-toggle:focus {
+        outline: none;
+        box-shadow: none;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function togglePassword(inputId, el) {
+            var input = document.getElementById(inputId);
+            var icon = el.querySelector('i');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            }
+        }
+    </script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
