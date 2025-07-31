@@ -31,7 +31,7 @@ namespace Demo_Product.Controllers
                 var result = await _signInManager.PasswordSignInAsync(p.Username, p.Password , false, true);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Category");
+                    return RedirectToAction("Index", "Index");
                 }
                 else
                 {
