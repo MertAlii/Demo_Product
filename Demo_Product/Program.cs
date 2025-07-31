@@ -1,3 +1,7 @@
+using DataAccessLayer.Concrete;
+using Demo_Product.Models;
+using EntityLayer.Concrete;
+
 namespace Demo_Product
 {
     public class Program
@@ -7,6 +11,12 @@ namespace Demo_Product
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<Context>();
+
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomerIdentityValidator>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

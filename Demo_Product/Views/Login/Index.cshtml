@@ -1,0 +1,93 @@
+﻿@model Demo_Product.Models.UserLoginViewModel
+@{
+    ViewData["Title"] = "Giriş Yap";
+    Layout = "~/Views/Shared/_UILayout.cshtml";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card border-0 shadow-lg rounded-4 bg-white">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <i class="bi bi-box-arrow-in-right" style="font-size: 3.5rem; color: #212529;"></i>
+                    <h2 class="mt-2 mb-0 fw-bold text-dark">Giriş Yap</h2>
+                    <p class="text-muted mb-0">Hesabınıza giriş yapın ve avantajlardan yararlanın</p>
+                </div>
+                <form method="post" autocomplete="off">
+                    <div class="mb-4">
+                        <label for="Username" class="form-label text-dark">Kullanıcı Adı</label>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                        <input type="text" class="form-control form-control-lg rounded-3" id="Username" name="Username" placeholder="Kullanıcı adınızı giriniz" value="@Model?.Username" />
+                    </div>
+                    <div class="mb-4">
+                        <label for="Password" class="form-label text-dark">Şifre</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <div class="position-relative">
+                            <input type="password" class="form-control form-control-lg rounded-3 pr-5" id="Password" name="Password" placeholder="Şifrenizi giriniz" />
+                            <span class="password-toggle" onclick="togglePassword('Password', this)">
+                                <i class="bi bi-eye"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <button type="submit" class="btn btn-dark btn-lg w-100 rounded-3 mb-3">
+                        <i class="bi bi-box-arrow-in-right"></i> Giriş Yap
+                    </button>
+                </form>
+                <div class="text-center mt-3">
+                    <span class="text-muted">Hesabınız yok mu?</span>
+                    <a href="/Register/Index" class="btn btn-outline-dark btn-lg rounded-3 ms-2">
+                        <i class="bi bi-person-plus"></i> Kayıt Ol
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .password-toggle {
+        position: absolute;
+        top: 50%;
+        right: 1.25rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #888;
+        z-index: 2;
+        font-size: 1.3rem;
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        line-height: 1;
+    }
+
+    .form-control.pr-5 {
+        padding-right: 2.5rem !important;
+    }
+
+    .password-toggle:focus {
+        outline: none;
+        box-shadow: none;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function togglePassword(inputId, el) {
+            var input = document.getElementById(inputId);
+            var icon = el.querySelector('i');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("bi-eye");
+                icon.classList.add("bi-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("bi-eye-slash");
+                icon.classList.add("bi-eye");
+            }
+        }
+    </script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
