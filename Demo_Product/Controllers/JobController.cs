@@ -2,14 +2,17 @@
 using BusinessLayer.FluentValidation;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace Demo_Product.Controllers
 {
+    [Authorize]
     public class JobController : Controller
     {
         JobManager jobManager = new JobManager(new EfJobDal());
+
         public IActionResult Index()
         {
             var values = jobManager.TGetList();
@@ -21,6 +24,7 @@ namespace Demo_Product.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AddJob(Job job)
         {
@@ -34,12 +38,14 @@ namespace Demo_Product.Controllers
             jobManager.TDelete(values);
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public IActionResult UpdateJob(int id)
         {
             var values = jobManager.TGetById(id);
             return View(values);
         }
+
         [HttpPost]
         public IActionResult UpdateJob(Job job)
         {

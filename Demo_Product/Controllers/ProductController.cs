@@ -3,10 +3,12 @@ using BusinessLayer.FluentValidation;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Demo_Product.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         ProductManager productManager = new ProductManager(new EfProductDal());

@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace Demo_Product.Controllers
 {
     [Authorize]
-    public class categoryController : Controller
+    public class IndexController : Controller
     {
         public IActionResult Index()
         {
+            ViewBag.UserName = User.Identity?.Name;
             return View();
         }
     }
